@@ -3,6 +3,8 @@ package br.com.carros.entity;
 import jakarta.persistence.*;
 import org.hibernate.engine.internal.Cascade;
 
+import java.util.List;
+
 @Entity
 public class Carro {
 
@@ -14,6 +16,9 @@ public class Carro {
 
     @ManyToOne(cascade = CascadeType.ALL)
     private Marca marca;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<Proprietario> proprietarios;
 
     public Long getId() {
         return id;
@@ -45,5 +50,13 @@ public class Carro {
 
     public void setMarca(Marca marca) {
         this.marca = marca;
+    }
+
+    public List<Proprietario> getProprietarios() {
+        return proprietarios;
+    }
+
+    public void setProprietarios(List<Proprietario> proprietarios) {
+        this.proprietarios = proprietarios;
     }
 }
